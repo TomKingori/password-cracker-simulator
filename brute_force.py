@@ -8,7 +8,7 @@ from itertools import product
 # API Endpoint
 URL = "http://localhost:3000/login"
 
-# Function to attempt login
+# Attempt login
 def attempt_login(username, password):
     response = requests.post(URL, json={"username": username, "password": password})
 
