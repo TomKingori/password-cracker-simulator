@@ -82,7 +82,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Advanced Brute-Force and Hash Cracker")
     parser.add_argument("-u", "--usernames-file", help="Path to usernames list")
     parser.add_argument("-p", "--passwords-file", help="Path to passwords list")
-    parser.add_argument("-c", "--creds-file", help="Path to credentials file (username:password)")
+    parser.add_argument("-c", "--creds-file", help="Path to credentials file (uname:password)")
     parser.add_argument("-hf", "--hash-file", help="Path to hash file (for hash cracking)")
     parser.add_argument("-ht", "--hash-type", help="Hash algorithm (md5, sha1, sha256, etc.)")
     parser.add_argument("-w", "--wordlist", help="Path to wordlist (for hash cracking)")
